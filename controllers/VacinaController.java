@@ -15,7 +15,7 @@ public class VacinaController {
         this.vacinas = new ArrayList<>();
     }
 
-    public String cadastrarVacina(String nome) {
+    public String cadastrarVacina() {
         String saida = "";
 
         this.vacinas.add(new Vacina());
@@ -26,6 +26,16 @@ public class VacinaController {
 
     public int exibirQtdVacina() {
         return this.vacinas.size();
+    }
+
+    public String deletarVacina() {
+        String saida = "";
+        Vacina vacina = this.vacinas.get(this.vacinas.size()-1);
+
+        this.vacinas.remove(vacina);
+        saida = "VACINA DELETADA COM SUCESSO";
+
+        return saida;
     }
 
     public List<Vacina> getVacinas() {
