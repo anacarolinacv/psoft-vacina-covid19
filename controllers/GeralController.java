@@ -12,7 +12,7 @@ public class GeralController {
         this.userController = new UserController();
         this.vacinaController = new VacinaController();
     }
-    // comorbidade tem que ser uma string assim: "manana, kakakaka, akakaka, akakak"
+
     public void  cadastrarPaciente(String nome, String cpf, String endereco, String cartaoSUS, String email, String telefone, String profissao, String comorbidades, int idade) {
         this.userController.cadastraPacientes(nome, cpf, endereco, cartaoSUS, email, telefone, profissao, comorbidades, idade);
     }

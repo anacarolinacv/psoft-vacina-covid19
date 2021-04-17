@@ -51,7 +51,6 @@ public class ControllCOVID {
         } while (!entrada.equals("S"));
 
     }
-    // String nome, String cpf, String endereco, String cartaoSUS, String email, String telefone, String profissao, String comorbidades, int idade
     private static void cadastrarPaciente(GeralController controller) {
         System.out.println();
         Scanner sc = new Scanner(System.in);
