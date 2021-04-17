@@ -3,6 +3,9 @@ package models;
 import helpers.Util;
 import models.status.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Usuario {
@@ -16,6 +19,7 @@ public class Usuario {
     private String profissao;
     private String[] comorbidades;
     private int idade;
+    private LocalDate acompanhamentoVacinas;
 
     private StatusVacina statusVacinacao;
 
@@ -31,6 +35,7 @@ public class Usuario {
         this.comorbidades = comorbidades.split(", ");
         this.idade = idade;
         this.statusVacinacao = aplicaSituacaoVacinaInicial();
+
     }
 
     private StatusVacina aplicaSituacaoVacinaInicial() {
@@ -52,12 +57,17 @@ public class Usuario {
                 break;
             case "HABILITADA PARA 1 DOSE":
                 this.statusVacinacao = new Tomou1Dose();
+                this.acompanhamentoVacinas = LocalDate.now();
                 break;
             case "1 DOSE APLICADA":
                 this.statusVacinacao = new Habilitada2Dose();
                 break;
             case "HABILITADA PARA 2 DOSE":
-                this.statusVacinacao = new Tomou2Dose();
+                if(Util.validaDataPSegundaDose(this.acompanhamentoVacinas)) {
+                    this.statusVacinacao = new Tomou2Dose();
+                } else {
+                    throw new IllegalArgumentException("SO PODE TOMAR A DOSE 2 DEPOIS DE 15 DIAS DA 1 DOSE");
+                }
                 break;
             case "2 DOSE APLICADA":
                 this.statusVacinacao = new Imunizadah();

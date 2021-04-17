@@ -1,6 +1,7 @@
 package helpers;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,5 +40,30 @@ public class Util {
         }
 
         return false;
+    }
+
+    public static boolean validaDataPSegundaDose(LocalDate data) {
+        LocalDate dataAtual = LocalDate.now();
+        boolean saida = false;
+        if(dataAtual.getMonthValue() == data.getMonthValue()) {
+            if(dataAtual.getDayOfMonth() - data.getDayOfMonth() >= 15) {
+                saida = true;
+            }
+        } else {
+            if(data.getMonthValue() == 2) {
+                if(dataAtual.getDayOfMonth() + (28 - data.getDayOfMonth()) >= 15) {
+                    saida = true;
+                }
+            } else if(data.getMonthValue() % 2 == 0) {
+                if(dataAtual.getDayOfMonth() + (30 - data.getDayOfMonth()) >= 15) {
+                    saida = true;
+                }
+            } else  {
+                if(dataAtual.getDayOfMonth() + (31 - data.getDayOfMonth()) >= 15) {
+                    saida = true;
+                }
+            }
+        }
+        return saida;
     }
 }
