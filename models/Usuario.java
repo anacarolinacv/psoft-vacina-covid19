@@ -1,7 +1,8 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import helpers.Util;
+import models.status.*;
+
 import java.util.Objects;
 
 public class Usuario {
@@ -14,31 +15,59 @@ public class Usuario {
     private String telefone;
     private String profissao;
     private String[] comorbidades;
-    private String situacaoAtual;
     private int idade;
-    private String[] vacinasTomadas;
+
+    private StatusVacina statusVacinacao;
 
 
     public Usuario (String nome, String cpf, String endereco, String cartaoSUS, String email, String telefone, String profissao, String comorbidades, int idade) {
         this.nome = nome;
         this.cpf = cpf;
-        this.endereco = cartaoSUS;
+        this.endereco = endereco;
+        this.cartaoSUS = cartaoSUS;
         this.email = email;
         this.telefone = telefone;
         this.profissao = profissao;
         this.comorbidades = comorbidades.split(", ");
         this.idade = idade;
-        this.situacaoAtual = aplicaSituacaoVacinaInicial();
-        this.vacinasTomadas = new String[2];
+        this.statusVacinacao = aplicaSituacaoVacinaInicial();
     }
 
-    public String aplicaSituacaoVacinaInicial() {
-        if(this.idade >= 60) {
-            // HABILITADA
+    private StatusVacina aplicaSituacaoVacinaInicial() {
+        StatusVacina status;
+
+        if(this.idade >= 60 || Util.validaProdissao(this.profissao) || Util.validaComorbidade(this.comorbidades)) {
+            status = new Habilitada1Dose();
         } else {
-            // NAO HABILITADA
+            status = new NaoHabilitada();
         }
-        return "";
+        return status;
+    }
+
+    public void atualizaStatusVacinacao() {
+
+        switch (this.statusVacinacao.getTipo()) {
+            case "NAO HABILITADA":
+                this.statusVacinacao = new Habilitada1Dose();
+                break;
+            case "HABILITADA PARA 1 DOSE":
+                this.statusVacinacao = new Tomou1Dose();
+                break;
+            case "1 DOSE APLICADA":
+                this.statusVacinacao = new Habilitada2Dose();
+                break;
+            case "HABILITADA PARA 2 DOSE":
+                this.statusVacinacao = new Tomou2Dose();
+                break;
+            case "2 DOSE APLICADA":
+                this.statusVacinacao = new Imunizadah();
+                break;
+
+        }
+    }
+
+    public StatusVacina getStatusVacinacao() {
+        return statusVacinacao;
     }
 
     public void setEndereco(String endereco) {

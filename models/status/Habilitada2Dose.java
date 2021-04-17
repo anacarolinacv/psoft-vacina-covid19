@@ -1,2 +1,29 @@
-package models.status;public class Habilitada2Dose {
+package models.status;
+
+import java.util.Objects;
+
+public class Habilitada2Dose implements StatusVacina{
+    private String tipo;
+
+    public Habilitada2Dose() {
+        this.tipo = "HABILITADA PARA 2 DOSE";
+    }
+
+    @Override
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Habilitada2Dose that = (Habilitada2Dose) o;
+        return tipo.equals(that.tipo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tipo);
+    }
 }

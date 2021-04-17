@@ -43,6 +43,14 @@ public class UserController {
 
         return saida;
     }
+    public void atualizaStatusVacinacao(String CPF) {
+        Util.validadorString(CPF);
+        if(this.pacientes.containsKey(CPF)) {
+            this.pacientes.get(CPF).atualizaStatusVacinacao();
+        } else {
+            throw new IllegalArgumentException("NAO EXISTE PACIENTE CADASTRADO COM ESSE CPF");
+        }
+    }
 
     public Map<String, Usuario> getPacientes() {
         return pacientes;
