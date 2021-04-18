@@ -4,6 +4,7 @@ package helpers;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Util {
 
@@ -24,15 +25,15 @@ public class Util {
     }
 
     public static boolean validaProfissao(String profissao, String profissaoPadrao) {
-        ArrayList arrayComorbidades = (ArrayList) Arrays.asList(profissaoPadrao.replaceAll(" ", "").split(",");
+        ArrayList arrayComorbidades = (ArrayList) Arrays.asList(profissaoPadrao.replaceAll(" ", "").split(","));
 
         return arrayComorbidades.contains(profissao);
 
     }
 
     public static boolean validaComorbidade(String comorbidades, String comorbidadesPadrao) {
-        ArrayList arrayComorbidadesPaciente = (ArrayList) Arrays.asList(comorbidades.replaceAll(" ","").split(","));
-        ArrayList arrayComorbidadesPadrao = (ArrayList) Arrays.asList(comorbidadesPadrao.replaceAll(" ","").split(","));
+        List<String> arrayComorbidadesPaciente = Arrays.asList(comorbidades.replaceAll(" ","").split(","));
+        List<String> arrayComorbidadesPadrao = Arrays.asList(comorbidadesPadrao.replaceAll(" ","").split(","));
         boolean saida = false;
 
         for (int i = 0; i < arrayComorbidadesPadrao.size() ; i++) {
@@ -46,11 +47,9 @@ public class Util {
     }
 
     public static boolean validaIdade(int idade, int idadePadrao) {
-        boolean saida = false;
-        if(idade >= idadePadrao) {
-            saida = true;
-        }
-        return saida;
+
+        return idade >= idadePadrao;
+
     }
 
     public static boolean validaDataPSegundaDose(LocalDate data) {

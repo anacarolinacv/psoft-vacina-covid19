@@ -39,7 +39,7 @@ public class Usuario {
     }
 
     public StatusVacina aplicaSituacaoVacinaInicial(boolean resultadoVerificacaoPadroes) {
-           StatusVacina status;
+        StatusVacina status;
 
         if(resultadoVerificacaoPadroes) {
             status = new Habilitada1Dose();
