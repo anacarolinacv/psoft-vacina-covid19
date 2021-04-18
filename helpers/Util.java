@@ -23,43 +23,59 @@ public class Util {
         }
     }
 
-    public static boolean validaProdissao(String profissao) {
-        boolean saida = true;
-        if(!(profissao.equals("MEDICO") || profissao.equals("ENFERMEIRO") || profissao.equals("PROFESSOR") || profissao.equals("FISIOTERAPEUTO"))) {
-            saida = false;
+    public static boolean validaProfissao(String profissao, String profissaoPadrao) {
+        ArrayList arrayComorbidades = (ArrayList) Arrays.asList(profissaoPadrao.replaceAll(" ", "").split(",");
+        boolean saida = false;
+        for (int i = 0; i < arrayComorbidades.size(); i++) {
+            if(arrayComorbidades.get(i) == profissao) {
+                saida = true;
+                break;
+            }
         }
         return saida;
     }
 
-    public static boolean validaComorbidade(String[] comorbidades) {
-        String[] comparacoesComorbidades = {"diabetes", "obesidade", "hipertensão arterial", "tuberculose", "doença pulmonar", "obstrutiva crônica", "problemas cardíacos"};
-        ArrayList arrayComorbidades = (ArrayList) Arrays.asList(comparacoesComorbidades);
+    public static boolean validaComorbidade(String comorbidades, String comorbidadesPadrao) {
+        ArrayList arrayComorbidadesPaciente = (ArrayList) Arrays.asList(comorbidades.replaceAll(" ","").split(","));
+        ArrayList arrayComorbidadesPadrao = (ArrayList) Arrays.asList(comorbidadesPadrao.replaceAll(" ","").split(","));
+        boolean saida = false;
 
-        for (int i = 0; i < comorbidades.length; i++) {
-            if (arrayComorbidades.contains(comorbidades[i])) return true;
+        for (int i = 0; i < arrayComorbidadesPadrao.size() ; i++) {
+
+            if(arrayComorbidadesPaciente.contains(arrayComorbidadesPadrao.get(i))) {
+                saida = true;
+                break;
+            }
         }
+        return saida;
+    }
 
-        return false;
+    public static boolean validaIdade(int idade, int idadePadrao) {
+        boolean saida = false;
+        if(idade >= idadePadrao) {
+            saida = true;
+        }
+        return saida;
     }
 
     public static boolean validaDataPSegundaDose(LocalDate data) {
         LocalDate dataAtual = LocalDate.now();
         boolean saida = false;
         if(dataAtual.getMonthValue() == data.getMonthValue()) {
-            if(dataAtual.getDayOfMonth() - data.getDayOfMonth() >= 15) {
+            if(dataAtual.getDayOfMonth() - data.getDayOfMonth() >= 20) {
                 saida = true;
             }
         } else {
             if(data.getMonthValue() == 2) {
-                if(dataAtual.getDayOfMonth() + (28 - data.getDayOfMonth()) >= 15) {
+                if(dataAtual.getDayOfMonth() + (28 - data.getDayOfMonth()) >= 20) {
                     saida = true;
                 }
             } else if(data.getMonthValue() % 2 == 0) {
-                if(dataAtual.getDayOfMonth() + (30 - data.getDayOfMonth()) >= 15) {
+                if(dataAtual.getDayOfMonth() + (30 - data.getDayOfMonth()) >= 20) {
                     saida = true;
                 }
             } else  {
-                if(dataAtual.getDayOfMonth() + (31 - data.getDayOfMonth()) >= 15) {
+                if(dataAtual.getDayOfMonth() + (31 - data.getDayOfMonth()) >= 20) {
                     saida = true;
                 }
             }

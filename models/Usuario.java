@@ -34,14 +34,14 @@ public class Usuario {
         this.profissao = profissao;
         this.comorbidades = comorbidades.split(", ");
         this.idade = idade;
-        this.statusVacinacao = aplicaSituacaoVacinaInicial();
+//        this.statusVacinacao = aplicaSituacaoVacinaInicial();
 
     }
 
-    private StatusVacina aplicaSituacaoVacinaInicial() {
-        StatusVacina status;
+    public StatusVacina aplicaSituacaoVacinaInicial(boolean resultadoVerificacaoPadroes) {
+           StatusVacina status;
 
-        if(this.idade >= 60 || Util.validaProdissao(this.profissao) || Util.validaComorbidade(this.comorbidades)) {
+        if(resultadoVerificacaoPadroes) {
             status = new Habilitada1Dose();
         } else {
             status = new NaoHabilitada();

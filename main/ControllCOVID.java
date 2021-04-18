@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class ControllCOVID {
 
     private static String exibirControlCovid() {
-        String menu = "\nCadastrar Paciente (C)" + System.lineSeparator() +
+        String menu = "\nInicializar Vacinacao (*)" + System.lineSeparator() +
+                "Cadastrar Paciente (C)" + System.lineSeparator() +
                 "Cadastrar Vacina (O)" + System.lineSeparator() +
                 "Listar Pacientes (V)" + System.lineSeparator() +
                 "Exibir Quantidade de vacinas (I)" + System.lineSeparator() +
@@ -30,7 +31,7 @@ public class ControllCOVID {
                     cadastrarPaciente(covidontroler);
                     break;
                 case "O":
-                    cadastrarVacina(covidontroler);
+                    cadastrarVacinas(covidontroler);
                     break;
                 case "V":
                     listarPacientes(covidontroler);
@@ -50,6 +51,23 @@ public class ControllCOVID {
             }
         } while (!entrada.equals("S"));
 
+    }
+
+    private static void inicializarVacinacao(GeralController controller) {
+        System.out.println();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Idade Padrao: ");
+        int idade = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Comorbidades Padrao: ");
+        String comorbidades = sc.nextLine();
+
+        System.out.print("Profissoes Padrao: ");
+        String profissoes = sc.nextLine();
+
+        System.out.println(controller.inicializarVacinacao(idade, comorbidades, profissoes));
     }
     private static void cadastrarPaciente(GeralController controller) {
         System.out.println();
@@ -87,8 +105,15 @@ public class ControllCOVID {
         controller.cadastrarPaciente(nome, cpf, endereco, cartaoSUS, email, telefone, profissao, comorbidades, idade);
         System.out.println("CADASTRO REALIZADO!");
     }
-    private static void cadastrarVacina(GeralController controller) {
-        controller.cadastrarVacina();
+    private static void cadastrarVacinas(GeralController controller) {
+        System.out.println();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Quantidade de vacinas: ");
+        int qtd = sc.nextInt();
+        sc.nextLine();
+
+        controller.cadastrarVacinas(qtd);
         System.out.println("CADASTRO REALIZADO!");
     }
     private static void listarPacientes(GeralController controller) {
