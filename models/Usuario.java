@@ -66,7 +66,7 @@ public class Usuario {
                 if(Util.validaDataPSegundaDose(this.acompanhamentoVacinas)) {
                     this.statusVacinacao = new Tomou2Dose();
                 } else {
-                    throw new IllegalArgumentException("SO PODE TOMAR A DOSE 2 DEPOIS DE 15 DIAS DA 1 DOSE");
+                    throw new IllegalArgumentException("SO PODE TOMAR A DOSE 2 DEPOIS DE 20 DIAS DA 1 DOSE");
                 }
                 break;
             case "2 DOSE APLICADA":
