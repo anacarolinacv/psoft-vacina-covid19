@@ -25,14 +25,9 @@ public class Util {
 
     public static boolean validaProfissao(String profissao, String profissaoPadrao) {
         ArrayList arrayComorbidades = (ArrayList) Arrays.asList(profissaoPadrao.replaceAll(" ", "").split(",");
-        boolean saida = false;
-        for (int i = 0; i < arrayComorbidades.size(); i++) {
-            if(arrayComorbidades.get(i) == profissao) {
-                saida = true;
-                break;
-            }
-        }
-        return saida;
+
+        return arrayComorbidades.contains(profissao);
+
     }
 
     public static boolean validaComorbidade(String comorbidades, String comorbidadesPadrao) {
