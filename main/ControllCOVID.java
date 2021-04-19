@@ -68,10 +68,10 @@ public class ControllCOVID {
         int idade = sc.nextInt();
         sc.nextLine();
 
-        System.out.print("Comorbidades Padrao: ");
+        System.out.print("Comorbidades Padroes: ");
         String comorbidades = sc.nextLine();
 
-        System.out.print("Profissoes Padrao: ");
+        System.out.print("Profissoes Padroes: ");
         String profissoes = sc.nextLine();
 
         System.out.println(controller.inicializarVacinacao(idade, comorbidades, profissoes));
