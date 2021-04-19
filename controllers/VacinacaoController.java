@@ -1,7 +1,7 @@
 package controllers;
 
-import helpers.Util;
 import models.Vacina;
+import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

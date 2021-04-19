@@ -1,7 +1,10 @@
 package controllers;
 
-import helpers.Util;
 import models.Usuario;
+import models.status.*;
+import util.Util;
+
+import java.time.LocalDate;
 
 public class GeralController {
 
@@ -25,6 +28,41 @@ public class GeralController {
 
         boolean resultFINAL = (result1 || result2 || result2);
         this.userController.getPacientes().get(cpf).aplicaSituacaoVacinaInicial(resultFINAL);
+    }
+
+    public void editarPaciente(String cpf, String campo) {
+        Usuario user = this.userController.getPacientes().get(cpf);
+        if(this.userController.getPacientes().containsKey(cpf)) {
+            switch (campo) {
+                case "NOME":
+                    user.setNome(campo);
+                    break;
+                case "TELEFONE":
+                    user.setTelefone(campo);
+                    break;
+                case "CARTA OSUS":
+                    user.setCartaoSUS(campo);
+                    break;
+                case "EMAIL":
+                    user.setEmail(campo);
+                    break;
+                case "ENDERECO":
+                    user.setEndereco(campo);
+                    break;
+                case "PROFISSAO":
+                    user.setProfissao(campo);
+                    break;
+                case "IDADE":
+                    user.setIdade(Integer.parseInt(campo));
+                    break;
+                case "COMORBIDADES":
+                    user.setComorbidades(campo);
+                    break;
+                default:
+                    throw new IllegalArgumentException("NAO EXISTE ESSE CAMPO NO CADASTRO DE PACIENTE");
+
+            }
+        }
     }
     public void cadastrarVacinas(int qtd) {
         this.vacinaController.cadastrarVacinas(qtd);

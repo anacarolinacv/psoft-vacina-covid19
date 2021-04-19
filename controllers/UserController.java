@@ -1,7 +1,7 @@
 package controllers;
 
-import helpers.Util;
 import models.Usuario;
+import util.Util;
 
 import java.util.HashMap;
 import java.util.Map;

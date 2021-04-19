@@ -9,10 +9,11 @@ public class ControllCOVID {
     private static String exibirControlCovid() {
         String menu = "\nInicializar Vacinacao (*)" + System.lineSeparator() +
                 "Cadastrar Paciente (C)" + System.lineSeparator() +
-                "Cadastrar Vacina (O)" + System.lineSeparator() +
+                "Cadastrar Vacinas (O)" + System.lineSeparator() +
                 "Listar Pacientes (V)" + System.lineSeparator() +
                 "Exibir Quantidade de vacinas (I)" + System.lineSeparator() +
                 "Atualizar o status do paciente (D)" + System.lineSeparator() +
+                "Editar Cadastrao (E)" + System.lineSeparator() +
                 "Sair (S)" + System.lineSeparator() + System.lineSeparator() +
                 "Opção> ";
 
@@ -133,6 +134,20 @@ public class ControllCOVID {
         String cpf = sc.nextLine();
 
         controller.atualizaStatusVacinacao(cpf);
+        System.out.println("PACIENTE ATUALIZADO COM SUCESSO!");
+    }
+
+    private static void editarCadastro(GeralController controller) {
+        System.out.println();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("CPF: ");
+        String cpf = sc.nextLine();
+
+        System.out.print("CAMPO DESEJADO: ");
+        String campo = sc.nextLine().toUpperCase();
+
+        controller.editarPaciente(cpf, campo);
         System.out.println("PACIENTE ATUALIZADO COM SUCESSO!");
     }
 }

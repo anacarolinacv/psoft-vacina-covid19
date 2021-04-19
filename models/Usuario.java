@@ -1,11 +1,9 @@
 package models;
 
-import helpers.Util;
+import util.Util;
 import models.status.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Usuario {
@@ -17,7 +15,7 @@ public class Usuario {
     private String email;
     private String telefone;
     private String profissao;
-    private String[] comorbidades;
+    private String comorbidades;
     private int idade;
     private LocalDate acompanhamentoVacinas;
 
@@ -32,9 +30,8 @@ public class Usuario {
         this.email = email;
         this.telefone = telefone;
         this.profissao = profissao;
-        this.comorbidades = comorbidades.split(", ");
+        this.comorbidades = comorbidades;
         this.idade = idade;
-//        this.statusVacinacao = aplicaSituacaoVacinaInicial();
 
     }
 
@@ -124,8 +121,24 @@ public class Usuario {
         return profissao;
     }
 
-    public String[] getComorbidades() {
+    public String getComorbidades() {
         return comorbidades;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCartaoSUS(String cartaoSUS) {
+        this.cartaoSUS = cartaoSUS;
+    }
+
+    public void setComorbidades(String comorbidades) {
+        this.comorbidades = comorbidades;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     @Override
