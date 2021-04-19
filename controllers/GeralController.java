@@ -62,6 +62,8 @@ public class GeralController {
                     throw new IllegalArgumentException("NAO EXISTE ESSE CAMPO NO CADASTRO DE PACIENTE");
 
             }
+        } else {
+            throw new IllegalArgumentException("PACIENTE COM CPF NAO CADASTRADO");
         }
     }
     public void cadastrarVacinas(int qtd) {

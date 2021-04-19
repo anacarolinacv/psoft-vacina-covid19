@@ -13,7 +13,7 @@ public class ControllCOVID {
                 "Listar Pacientes (V)" + System.lineSeparator() +
                 "Exibir Quantidade de vacinas (I)" + System.lineSeparator() +
                 "Atualizar o status do paciente (D)" + System.lineSeparator() +
-                "Editar Cadastrao (E)" + System.lineSeparator() +
+                "Editar Cadastro (E)" + System.lineSeparator() +
                 "Sair (S)" + System.lineSeparator() + System.lineSeparator() +
                 "Opção> ";
 
@@ -28,6 +28,9 @@ public class ControllCOVID {
             System.out.print(exibirControlCovid());
             entrada = sc.nextLine().toUpperCase();
             switch (entrada) {
+                case "*":
+                    inicializarVacinacao(covidontroler);
+                    break;
                 case "C":
                     cadastrarPaciente(covidontroler);
                     break;
@@ -42,6 +45,9 @@ public class ControllCOVID {
                     break;
                 case "D":
                     atualizarPaciente(covidontroler);
+                    break;
+                case "E":
+                    editarCadastro(covidontroler);
                     break;
                 case "S":
                     break;
